@@ -98,7 +98,6 @@ const data = [
   }
 ];
 
-console.log(data);
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
   Your component is a function that takes an article object as its only argument,
