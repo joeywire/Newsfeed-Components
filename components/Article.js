@@ -86,6 +86,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'The Article of Joe',
+    date: 'Jan 1st 2022',
+    firstParagraph: `Joe has traveled to the future and sent this blog post back for our reading pleasure`,
+
+    secondParagraph: `Joe started his own Fin Tech company then sold it for one BTC - which is worth 1.8 Billion USD - controlled for inflation thats about 1700 USD in 2020.`,
+
+    thirdParagraph: `He invested his money in a well built canoe, started paddling down the Mississippi River and made a home on the old BP Oil rig that was abandoned after the massive spill! He lives happily with his wife, dog, and fishing pole!`
   }
 ];
 
@@ -102,7 +111,49 @@ const data = [
 
     <span class="expandButton">+</span>
   </div>
+*/
+const articlesWrapper = document.querySelector('.articles');
 
+function articleMaker(item) {
+  //Instantiate Elements Needed For Article
+  const article = document.createElement('div');
+  const h2 = document.createElement('h2');
+  const pDate = document.createElement('p');
+  const pOne = document.createElement('p');
+  const pTwo = document.createElement('p');
+  const pThree = document.createElement('p');
+  const span = document.createElement('span');
+  //Add Necessary Classes 
+  article.classList.add('article');
+  pDate.classList.add('date');
+  span.classList.add('expandButton');
+  //Nest Elements 
+  article.appendChild(h2);
+  article.appendChild(pDate);
+  article.appendChild(pOne);
+  article.appendChild(pTwo);
+  article.appendChild(pThree);
+  article.appendChild(span);
+  //Populate Content
+  h2.textContent = item.title;
+  pDate.textContent = item.date;
+  pOne.textContent = item.firstParagraph;
+  pTwo.textContent = item.secondParagraph;
+  pThree.textContent = item.thirdParagraph;
+  span.textContent = '+';
+
+  span.addEventListener('click', () => {
+    article.classList.toggle('article-open'); 
+  });
+
+  return article
+}
+
+data.forEach(item => {
+  articlesWrapper.append(articleMaker(item));
+});
+
+/*
   Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
   This listener should toggle the class 'article-open' on div.article.
 
@@ -114,3 +165,4 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
